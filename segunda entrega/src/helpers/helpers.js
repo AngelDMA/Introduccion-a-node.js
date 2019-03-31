@@ -15,6 +15,21 @@ hbs.registerHelper('crearCurso', (nombre, id, valor, modalidad, duracion) => {
     }
 })
 
+hbs.registerHelper('crearUsuario', (documento, nombre, correo, telefono) => {
+    funciones.crearUsuario(documento, nombre, correo, telefono);
+    if(valor == true){
+        return '<div class="container">\
+                <div class="alert alert-danger" role="alert">\
+                Ya existe un usuario con el documento escrito\
+                </div></div>';
+    } else{
+        return '<div class="alert alert-success" role="alert">\
+                    <h4 class="alert-heading">¡Felicitaciones!</h4>\
+                    <p>Has creado tu usuario exitosamente</p>\
+                </div>';
+    }
+})
+
 hbs.registerHelper('listarCursos', () => {
     listaCursos = require('./../listado-cursos.json');
     let texto = '<div class="container">\
