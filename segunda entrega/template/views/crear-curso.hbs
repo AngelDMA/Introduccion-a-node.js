@@ -1,0 +1,44 @@
+{{>header}}
+<div class="container">
+    <h2 class="text-center">Formulario para ingresar un nuevo curso</h2>
+    <h5 class="text-center">Utilice este formulario para crear un nuevo curso</h5>
+
+    <form action="/curso" method="post">
+        <div class="row">
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Nombre del curso" name="nombre_curso" required>
+            </div>
+            <div class="col">
+                <input type="number" class="form-control" placeholder="Id" name="id_curso" required>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <select name="modalidad_curso" id="" class="form-control">
+                    <option value="elegir" selected>Elige una opción</option>
+                    <option value="presencial">Presencial</option>
+                    <option value="virtual">Virtual</option>
+                </select>
+            </div>
+            <div class="col">
+                <input type="number" class="form-control" placeholder="Valor" name="valor_curso">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <input type="text" name="intensidad_curso" id="" class="form-control" placeholder="Intensidad del curso">
+            </div>
+            <!--<div class="col">
+                <textarea name="descripcion_curso" id="" cols="30" rows="3" class="form-control" style="resize: none;"></textarea>
+            </div>-->
+        </div>
+        <div class="text-center">
+            <button class="btn btn-primary">Enviar</button>
+        </div>
+        
+    </form>
+</div>
+
+{{>footer}}
