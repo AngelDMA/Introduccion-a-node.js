@@ -52,6 +52,7 @@ app.get('/crear-curso', (req, res ) => {
 
 app.post('/curso', (req, res) => {
     res.render('curso', {
+        titulo: 'Curso creado',
         nombre: req.body.nombre_curso,
         id: parseInt(req.body.id_curso),
         modalidad: req.body.modalidad_curso,
@@ -64,6 +65,22 @@ app.post('/curso', (req, res) => {
 app.get('/cursos', (req, res) => {
     res.render('cursos');
 });
+
+app.get('/registro', (req, res) => {
+    res.render('registro',{
+        titulo: 'Registro'
+    })
+})
+
+app.post('/registrado', (req, res) => {
+    res.render('registrado', {
+        titulo: 'Usuario creado',
+        documento: req.body.doc_identidad,
+        nombre: req.body.nombre,
+        correo: req.body.correo,
+        telefono: req.body.telefono
+    })
+})
 
 app.get('*', (req, res) => {
     res.render('error',{

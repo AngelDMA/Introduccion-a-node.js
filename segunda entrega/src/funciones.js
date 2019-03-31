@@ -1,10 +1,19 @@
 const fs = require ('fs');
 let listaEstudiantes = [];
 let listaCursos = [];
+let listaUsuarios = [];
 
 const guardar = () => {
 	let data = JSON.stringify(listaEstudiantes);
 	fs.writeFile(`src/listado.json`, data , (err) => {
+		  	  	if (err) throw (err);
+		  		console.log ('se ha creado el archivo');		  	
+			});
+}
+
+const guardarUsuarios = () => {
+	let data = JSON.stringify(listaUsuarios);
+	fs.writeFile(`src/listado-usuarios.json`, data , (err) => {
 		  	  	if (err) throw (err);
 		  		console.log ('se ha creado el archivo');		  	
 			});
@@ -24,6 +33,15 @@ const cargar = () => {
 	
 	 } catch(err){
 	 	listaEstudiantes =[];
+	 }
+}
+
+const cargarUsuarios = () => {
+	try {
+	  listaUsuarios = require ('./listado-usuarios.json');
+	
+	 } catch(err){
+	 	listaUsuarios =[];
 	 }
 }
 
@@ -68,6 +86,25 @@ const crearCurso = (nombre, id, valor, modalidad, duracion) => {
 		listaCursos.push(cur);
 		guardarCursos()
 		return texto = false;
+	}
+}
+
+const crearUsuario = (documento, nombre, correo, telefono) => {
+	cargarUsuarios();
+	let usuarioDuplicado = listaUsuarios.find(doc => doc.documento == documento)
+	if(usuarioDuplicado) {
+		return valor = true;
+	} else{
+		let us = {
+			documento: documento,
+			nombre: nombre,
+			correo: correo,
+			telefono: telefono,
+			tipo: 'aspirante'
+		}
+		listaUsuarios.push(us);
+		guardarUsuarios();
+		return valor = false;
 	}
 }
 
@@ -158,5 +195,6 @@ module.exports = {
 	mostrarProm,
 	actualizar,
 	borrar,
-	crearCurso
+	crearCurso,
+	crearUsuario
 }
