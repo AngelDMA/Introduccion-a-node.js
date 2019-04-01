@@ -1,2 +1,16 @@
 {{>header2}}
+<div class="container">
+    <form action="/inscribir" method="post">
+        <div class="row">
+            <div class="col">
+                <label for="">Nombre del curso a inscribirse</label>
+                <input type="text" class="form-control" placeholder="Nombre del curso" name="nombre_curso" required>
+            </div>
+            <div class="col">
+                <label for="">Documento del aspirante</label>
+                <input type="text" class="form-control" placeholder="Documento" name="doc_identidad" required>
+            </div>
+        </div>
+    </form>
+</div>
 {{>footer}}
