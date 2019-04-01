@@ -98,7 +98,12 @@ app.get('/inscribir', (req, res) => {
     res.render('inscribir');
 });
 
-
+app.post('/inscribir', (req, res) => {
+    res.render('inscribir',{
+        nombre: req.body.cursos,
+        documento: req.body.doc_identidad
+    });
+});
 
 app.get('/registro', (req, res) => {
     res.render('registro',{

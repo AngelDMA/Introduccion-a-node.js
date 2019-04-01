@@ -38,6 +38,21 @@ hbs.registerHelper('salida', () => {
     
 })
 
+hbs.registerHelper('listarCursosSelect', () => {
+    let listaCursos = require('./../listado-cursos.json')
+    let texto =`<div class="form-group">
+				<label>Cursos</label>              
+          		<select class="form-control" name="cursos">
+				<option value="-">-</option>`
+	listaCursos.forEach(curso=> {if (curso.estado == 'disponible'){
+        texto = texto +`<option value="${curso.id}">${curso.nombre}</option>`
+    }		
+			
+			});
+	texto = texto + `</select><br></div>`
+	return texto;
+})
+
 hbs.registerHelper('listarCursos', () => {
     listaCursos = require('./../listado-cursos.json');
     let texto = '<div class="container">\
@@ -128,4 +143,8 @@ hbs.registerHelper('listar', () => {
 
     texto = texto + '</tr></tbody></table>'
     return texto;
+})
+
+hbs.registerHelper('inscrito', (nombre, documento) => {
+    funciones.inscribir(nombre, documento)
 })

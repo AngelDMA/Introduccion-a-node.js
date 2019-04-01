@@ -2,6 +2,7 @@ const fs = require ('fs');
 let listaEstudiantes = [];
 let listaCursos = [];
 let listaUsuarios = [];
+let listaInscritos = [];
 
 const guardar = () => {
 	let data = JSON.stringify(listaEstudiantes);
@@ -22,6 +23,14 @@ const guardarUsuarios = () => {
 const guardarCursos = () => {
 	let data = JSON.stringify(listaCursos);
 	fs.writeFile(`src/listado-cursos.json`, data , (err) => {
+		  	  	if (err) throw (err);
+		  		console.log ('se ha creado el archivo');		  	
+			});
+}
+
+const guardarInscritos = () => {
+	let data = JSON.stringify(listaInscritos);
+	fs.writeFile(`src/listado-inscritos.json`, data , (err) => {
 		  	  	if (err) throw (err);
 		  		console.log ('se ha creado el archivo');		  	
 			});
@@ -51,6 +60,15 @@ const cargarCursos = () => {
 	
 	 } catch(err){
 	 	listaCursos =[];
+	 }
+}
+
+const cargarInscritos = () => {
+	try {
+	  listaInscritos = require ('./listado-inscritos.json');
+	
+	 } catch(err){
+	 	listaInscritos =[];
 	 }
 }
 
@@ -202,6 +220,25 @@ const borrar = (nom) =>{
 	}
 }
 
+const inscribir = (nom, doc) => {
+	cargarInscritos();
+	let duplicado = listaInscritos.filter(buscar => buscar.documento == doc)
+	console.log(duplicado)
+	/*if(duplicado){
+		console.log(duplicado)
+	}else{
+		let ins = {
+			nombre: nom,
+			documento: doc
+		}
+		console.log(ins)
+		//listaInscritos.push(ins);
+		//guardarInscritos()
+		return texto = false;
+	}*/
+	
+}
+
 module.exports = {
 	crear,
 	promedio,
@@ -212,5 +249,6 @@ module.exports = {
 	borrar,
 	crearCurso,
 	crearUsuario,
-	ingresar
+	ingresar,
+	inscribir
 }
