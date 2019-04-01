@@ -35,24 +35,66 @@ hbs.registerHelper('listarCursos', () => {
     let texto = '<div class="container">\
                 <table class="table table-striped table-hover">\
                 <thead class="thead-dark">\
-                <th>Nombre</th>\
                 <th>Id</th>\
+                <th>Nombre</th>\
                 <th>Valor</th>\
-                <th>Modalidad</th>\
-                <th>Intensidad</th>\
+                <th>Estado</th>\
+                <th>Cambiar estado</th>\
                 </thead>\
                 <tbody>';
     listaCursos.forEach(curso => {
         texto = texto +
-                '<tr>' + 
-                '<td>' + curso.nombre + '</td>' +
-                '<td>' + curso.id + '</td>' +
-                '<td>' + curso.valor + '</td>' +
-                '<td>' + curso.modalidad + '</td>' +
-                '<td>' + curso.intensidad + '</td>'
+                `<tr> 
+                <td> ${curso.id}  </td> 
+                <td> ${curso.nombre} </td>
+                <td> ${curso.valor} </td> 
+                <td> ${curso.estado} </td>
+                <td>
+                <div class="dropdown">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Cambiar estado
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="#">disponible</a>
+                    <a class="dropdown-item" href="#">cerrado</a>
+                </div>
+                </div></td>`
     });
 
     texto = texto + '</tr></tbody></table></div>'
+
+    return texto;
+})
+
+hbs.registerHelper('listarCursos2', () => {
+    listaCursos = require('./../listado-cursos.json');
+    let texto = '<div class="accordion" id="accordionExample">';
+    i = 1;
+    listaCursos.forEach(curso => {if (curso.estado == "disponible"){
+        texto = texto +
+               `<div class="card">
+                <div class="card-header" id="heading${i}">
+                <h2 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse${i}" aria-expanded="true" aria-controls="collapse${i}">
+                    ${curso.nombre}
+                    </button>
+                </h2>
+                </div>
+            
+                <div id="collapse${i}" class="collapse" aria-labelledby="heading${i}" data-parent="#accordionExample">
+                <div class="card-body">
+                    id: ${curso.id} <br>
+                    valor: ${curso.valor} <br>
+                    modalidad: ${curso.modalidad} <br>
+                    intensidad: ${curso.intensidad} <br>
+
+                </div>
+                </div>`}
+                i=i+1;
+    });
+
+    texto = texto + '</div>';
 
     return texto;
 })

@@ -82,6 +82,7 @@ const crearCurso = (nombre, id, valor, modalidad, duracion) => {
 			valor: valor,
 			modalidad: modalidad,
 			intensidad: duracion,
+			estado: "disponible"
 		}
 		listaCursos.push(cur);
 		guardarCursos()
