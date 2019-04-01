@@ -115,7 +115,6 @@ app.post('/validarentrada', (req, res) => {
 })
 
 app.post('/salida', (req, res) => {
-    res.render('salida');
     sesion = 'primero';
     res.redirect('/');
 })
