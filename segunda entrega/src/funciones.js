@@ -158,6 +158,20 @@ const mostrarProm = () => {
 	return promedioganador
 }
 
+const ingresar = (documento) => {
+	listaUsuarios = require('./listado-usuarios.json');
+	let encontrado = listaUsuarios.find(doc => doc.documento == documento);
+	if(encontrado){
+		if (encontrado.tipo == 'coordinador'){
+			sesion = 'coordinador'
+		}
+		else if (encontrado.tipo == 'aspirante'){
+			sesion = 'interesado'
+		}
+	}
+	
+}
+
 const actualizar = (nom, mat, not) => {
 	cargar();	
 	
@@ -197,5 +211,6 @@ module.exports = {
 	actualizar,
 	borrar,
 	crearCurso,
-	crearUsuario
+	crearUsuario,
+	ingresar
 }

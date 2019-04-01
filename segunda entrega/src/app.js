@@ -11,7 +11,7 @@ const dirNode_modules = path.join(__dirname, '../node_modules');
 const dirViews = path.join(__dirname, '../template/views')
 
 
-global.sesion = "coordinador"
+global.sesion = "primero"
 
 
 app.use(express.static(directoriopublico));
@@ -55,7 +55,7 @@ app.post('/calculos', (req, res) => {
 app.get('/listado', (req, res ) => {
 	res.render('listado', {
 		titulo: 'Listado de Estudiantes'		
-	})	
+    })	
 });
 
 app.get('/crear-curso', (req, res ) => {
@@ -104,6 +104,20 @@ app.get('/registro', (req, res) => {
     res.render('registro',{
         titulo: 'Registro'
     })
+})
+
+app.post('/validarentrada', (req, res) => {
+    res.render('validarentrada', {
+        titulo: 'Validar',
+        documento: req.body.documento
+    })
+    res.redirect('/');
+})
+
+app.post('/salida', (req, res) => {
+    res.render('salida');
+    sesion = 'primero';
+    res.redirect('/');
 })
 
 app.post('/registrado', (req, res) => {

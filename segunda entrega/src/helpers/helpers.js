@@ -30,6 +30,14 @@ hbs.registerHelper('crearUsuario', (documento, nombre, correo, telefono) => {
     }
 })
 
+hbs.registerHelper('validarentrada', (documento) => {
+    funciones.ingresar(documento);
+})
+
+hbs.registerHelper('salida', () => {
+    
+})
+
 hbs.registerHelper('listarCursos', () => {
     listaCursos = require('./../listado-cursos.json');
     let texto = '<div class="container">\
@@ -119,6 +127,5 @@ hbs.registerHelper('listar', () => {
     });
 
     texto = texto + '</tr></tbody></table>'
-
     return texto;
 })
