@@ -35,24 +35,54 @@ hbs.registerHelper('listarCursos', () => {
     let texto = '<div class="container">\
                 <table class="table table-striped table-hover">\
                 <thead class="thead-dark">\
-                <th>Nombre</th>\
                 <th>Id</th>\
+                <th>Nombre</th>\
                 <th>Valor</th>\
-                <th>Modalidad</th>\
-                <th>Intensidad</th>\
+                <th>Estado</th>\
                 </thead>\
                 <tbody>';
     listaCursos.forEach(curso => {
         texto = texto +
                 '<tr>' + 
-                '<td>' + curso.nombre + '</td>' +
                 '<td>' + curso.id + '</td>' +
+                '<td>' + curso.nombre + '</td>' +
                 '<td>' + curso.valor + '</td>' +
-                '<td>' + curso.modalidad + '</td>' +
-                '<td>' + curso.intensidad + '</td>'
+                '<td>' + curso.estado + '</td>'
     });
 
     texto = texto + '</tr></tbody></table></div>'
+
+    return texto;
+})
+
+hbs.registerHelper('listarCursos2', () => {
+    listaCursos = require('./../listado-cursos.json');
+    let texto = '<div class="accordion" id="accordionExample">';
+    i = 1;
+    listaCursos.forEach(curso => {
+        texto = texto +
+               `<div class="card">
+                <div class="card-header" id="heading${i}">
+                <h2 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse${i}" aria-expanded="true" aria-controls="collapse${i}">
+                    ${curso.nombre}
+                    </button>
+                </h2>
+                </div>
+            
+                <div id="collapse${i}" class="collapse" aria-labelledby="heading${i}" data-parent="#accordionExample">
+                <div class="card-body">
+                    id: ${curso.id} <br>
+                    valor: ${curso.valor} <br>
+                    modalidad: ${curso.modalidad} <br>
+                    intensidad: ${curso.intensidad} <br>
+
+                </div>
+                </div>`
+                i=i+1;
+    });
+
+    texto = texto + '</div>';
 
     return texto;
 })
