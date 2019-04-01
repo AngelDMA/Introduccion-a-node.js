@@ -39,15 +39,27 @@ hbs.registerHelper('listarCursos', () => {
                 <th>Nombre</th>\
                 <th>Valor</th>\
                 <th>Estado</th>\
+                <th>Cambiar estado</th>\
                 </thead>\
                 <tbody>';
     listaCursos.forEach(curso => {
         texto = texto +
-                '<tr>' + 
-                '<td>' + curso.id + '</td>' +
-                '<td>' + curso.nombre + '</td>' +
-                '<td>' + curso.valor + '</td>' +
-                '<td>' + curso.estado + '</td>'
+                `<tr> 
+                <td> ${curso.id}  </td> 
+                <td> ${curso.nombre} </td>
+                <td> ${curso.valor} </td> 
+                <td> ${curso.estado} </td>
+                <td>
+                <div class="dropdown">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Cambiar estado
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="#">disponible</a>
+                    <a class="dropdown-item" href="#">cerrado</a>
+                </div>
+                </div></td>`
     });
 
     texto = texto + '</tr></tbody></table></div>'
@@ -59,7 +71,7 @@ hbs.registerHelper('listarCursos2', () => {
     listaCursos = require('./../listado-cursos.json');
     let texto = '<div class="accordion" id="accordionExample">';
     i = 1;
-    listaCursos.forEach(curso => {
+    listaCursos.forEach(curso => {if (curso.estado == "disponible"){
         texto = texto +
                `<div class="card">
                 <div class="card-header" id="heading${i}">
@@ -78,7 +90,7 @@ hbs.registerHelper('listarCursos2', () => {
                     intensidad: ${curso.intensidad} <br>
 
                 </div>
-                </div>`
+                </div>`}
                 i=i+1;
     });
 

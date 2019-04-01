@@ -9,7 +9,7 @@ const directoriopublico = path.join(__dirname, '../public');
 const directoriopartials = path.join(__dirname, '../template/partials');
 const dirNode_modules = path.join(__dirname, '../node_modules');
 const dirViews = path.join(__dirname, '../template/views')
-
+var sesion = "primero"
 app.use(express.static(directoriopublico));
 hbs.registerPartials(directoriopartials);
 app.use(bodyParser.urlencoded({extended: false}));
@@ -23,7 +23,17 @@ app.set('view engine', 'hbs');
 app.set('views', dirViews);
 
 app.get('/',(req, res) => {
-    res.render('index', {
+    direccion = '';
+    if (sesion == "primero"){
+        direccion = 'index';
+    }
+    else if (sesion == 'interesado'){
+        direccion = 'index2';
+    }
+    else {
+        direccion = 'index3'
+    }
+    res.render(direccion, {
         estudiante: 'Sebastian',
         titulo: 'Inicio'
     });
