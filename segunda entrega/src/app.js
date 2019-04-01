@@ -9,7 +9,11 @@ const directoriopublico = path.join(__dirname, '../public');
 const directoriopartials = path.join(__dirname, '../template/partials');
 const dirNode_modules = path.join(__dirname, '../node_modules');
 const dirViews = path.join(__dirname, '../template/views')
-var sesion = "primero"
+
+
+global.sesion = "coordinador"
+
+
 app.use(express.static(directoriopublico));
 hbs.registerPartials(directoriopartials);
 app.use(bodyParser.urlencoded({extended: false}));
@@ -30,7 +34,7 @@ app.get('/',(req, res) => {
     else if (sesion == 'interesado'){
         direccion = 'index2';
     }
-    else {
+    else if (sesion == 'coordinador'){
         direccion = 'index3'
     }
     res.render(direccion, {
