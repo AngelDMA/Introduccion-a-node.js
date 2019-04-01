@@ -36,20 +36,15 @@ hbs.registerHelper('listarCursos', () => {
                 <table class="table table-striped table-hover">\
                 <thead class="thead-dark">\
                 <th>Nombre</th>\
-                <th>Id</th>\
                 <th>Valor</th>\
-                <th>Modalidad</th>\
-                <th>Intensidad</th>\
                 </thead>\
                 <tbody>';
     listaCursos.forEach(curso => {
         texto = texto +
                 '<tr>' + 
                 '<td>' + curso.nombre + '</td>' +
-                '<td>' + curso.id + '</td>' +
-                '<td>' + curso.valor + '</td>' +
-                '<td>' + curso.modalidad + '</td>' +
-                '<td>' + curso.intensidad + '</td>'
+                '<td>' + curso.valor + '</td>' 
+            
     });
 
     texto = texto + '</tr></tbody></table></div>'
